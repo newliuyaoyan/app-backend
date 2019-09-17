@@ -48,15 +48,15 @@ app.get('/shops', function (req, res) {
   res.send(Data.data);
 });
 app.get('/auth', function (req, res) {
-  console.log(code);
+  //console.log(code);
   code = Create.creatCode();
   phone = req.query.phoneNum;
   res.send(code);
 });
 
 app.post('/authlog', function (req, res) {
-  console.log(req.body);
-  console.log(code)
+ // console.log(req.body);
+ // console.log(code)
   if (req.body.name) {
     userdata.data.name = req.body.name;
     userdata.data.id = 1;
@@ -73,6 +73,7 @@ app.post('/authlog', function (req, res) {
 });
 
 app.get('/userinfo', function (req, res) {
+  console.log(userdata)
   res.send(userdata)
 });
 
