@@ -21,8 +21,8 @@ var userdata = {
     name: '',
     id: ''
   }
-
 }
+var ordermsg={code:'',data:{}};
 //设置跨域访问
 // app.all('https://www.baidu.com', function(req, res, next) {
 //     res.header("Access-Control-Allow-Origin", 'https://www.baidu.com');
@@ -37,7 +37,7 @@ app.get('/position', function (req, res) {
   var addressData = {
     code: 0,
     data: {
-      address: '地址：我真的不知道在哪'
+      address: '地址：北京市甜水园D座'
     }
   }
   res.send(addressData);
@@ -80,5 +80,19 @@ app.get('/userinfo', function (req, res) {
 app.get('/logout', function (req, res) {
   res.send(userdata)
   userdata.data.id= userdata.data.phone= userdata.data.name='';
+})
+
+app.post('/topay',function(req, res){
+  if(req.body){
+    ordermsg.data=req.body.data;
+    ordermsg.code=0;
+    res.send('支付成功')
+  }
+})
+
+app.get('/order', function(req, res){
+  console.log(ordermsg);
+  res.send(ordermsg);
+  
 })
 app.listen(4000);
